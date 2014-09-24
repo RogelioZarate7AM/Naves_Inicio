@@ -9,7 +9,7 @@ CGame::CGame(){
 
 	if (SDL_Init(SDL_INIT_VIDEO)<0)//si regresa 1 el init de video si se activo y regresa -1 si no se pudo iniciar. 
 	{
-		printf("No se pudo iniciar SDL: %s\n", SDL_GetError());//
+		printf("No se pudo iniciar SDL: Error %s\n", SDL_GetError());//
 		exit(EXIT_FAILURE);
 	}
 	screen= SDL_SetVideoMode(640,480,24,SDL_HWSURFACE);//(ancho,alto,bpp,bandera)
@@ -18,10 +18,14 @@ CGame::CGame(){
 		printf("No se puede inicializar el modo grafico: \n",SDL_GetError());
 		exit(1);
 	}
+	SDL_WM_SetCaption( "Mi primer Juego", NULL );
+
+	atexit(SDL_Quit);
 }
 
 // Con esta función eliminaremos todos los elementos en pantalla
 void CGame::Finalize(){
+	SDL_Quit();
 }
 
 bool CGame::Start()
