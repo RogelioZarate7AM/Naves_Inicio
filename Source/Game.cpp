@@ -6,7 +6,7 @@
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
-
+	////ACT3: Mal, esta parte no va aqui, debe ir en el estado ESTADO_INICIANDO llamado desde un metodo llamado iniciando.
 	if (SDL_Init(SDL_INIT_VIDEO)<0)//si regresa 1 el init de video si se activo y regresa -1 si no se pudo iniciar. 
 	{
 		printf("No se pudo iniciar SDL: Error %s\n", SDL_GetError());//
@@ -19,7 +19,7 @@ CGame::CGame(){
 		exit(1);
 	}
 	SDL_WM_SetCaption( "Mi primer Juego", NULL );
-
+	///ACT3 Hasta aqui esta mal.
 	atexit(SDL_Quit);
 }
 
