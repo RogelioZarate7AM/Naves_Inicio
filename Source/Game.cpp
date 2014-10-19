@@ -7,7 +7,6 @@
 
 CGame::CGame(){
 	estado = ESTADO_INICIANDO;
-	////ACT3: Mal, esta parte no va aqui, debe ir en el estado ESTADO_INICIANDO llamado desde un metodo llamado iniciando.
 	Iniciando();
 
 	//delete nave;
@@ -27,10 +26,11 @@ void CGame::Iniciando(){
 	}
 	SDL_WM_SetCaption( "Mi primer Juego", NULL );
 
-	///ACT3 Hasta aqui esta mal.
 	atexit(SDL_Quit);
 
-	nave = new Nave(screen,"../Data/MiNave.bmp");
+	nave = new Nave(screen,"../Data/MiNave.bmp",(WIDTH_SCREEN/2)/*-(sprite->WidthModule(0)/2))*/,(HEIGHT_SCREEN-80)/*-(sprite->HeightModule(0)*/);
+	enemigo = new Nave(screen,"../Data/enemigo.bmp",0,0);
+	enemigo->SetAutoMovimiento(true);
 
 }
 // Con esta función eliminaremos todos los elementos en pantalla
@@ -45,12 +45,13 @@ bool CGame::Start()
 
 	// Esta variable nos ayudara a controlar la salida del juego...
 	int salirJuego = false;
-          
+     int x=0;     
 	while (salirJuego == false){
 	 
 		//Maquina de estados
 		switch(estado){
 		case Estado::ESTADO_INICIANDO:
+			printf("1. ESTADO_INICIANDO");
 			Iniciando();
 			estado =ESTADO_MENU;
 			//{
@@ -70,6 +71,20 @@ bool CGame::Start()
 			//}
 			break;
 		case Estado ::ESTADO_MENU:
+			if(x==0){
+			printf("\n2. ESTADO_MENU");
+			estado=ESTADO_JUGANDO;
+			x=1;
+			}
+			else
+			{
+				printf("\n2. ESTADO_MENU");
+				estado=ESTADO_FINALIZANDO;
+				
+			}
+			break;
+		case Estado ::ESTADO_JUGANDO:
+			enemigo->Actualizar();
 		//	nave->PintarModulo(0,0,0,64,64);
 			/*for (int i = 0; i < 100; i++)
 			{
@@ -97,12 +112,23 @@ bool CGame::Start()
 			}
 			
 				nave->Pintar();
-			break;
-		case Estado ::ESTADO_JUGANDO:
+				enemigo->Pintar();
+
+				if(keys[SDLK_SPACE])
+			{
+				printf("\n3. ESTADO_JUGANDO");
+				estado=ESTADO_TERMINANDO;
+			}
+			
 			break;
 		case Estado ::ESTADO_TERMINANDO:
+			printf("\n4. ESTADO_TERMINANDO");
+			estado=ESTADO_MENU;
+			;
 			break;
 		case Estado ::ESTADO_FINALIZANDO:
+			printf("\n5. ESTADO_FINALIZADO");
+			getchar();
 			salirJuego = true;
 			break;
 		};
