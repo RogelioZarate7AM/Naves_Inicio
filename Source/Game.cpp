@@ -45,9 +45,11 @@ bool CGame::Start()
 
 	// Esta variable nos ayudara a controlar la salida del juego...
 	int salirJuego = false;
+
      int x=0;     
+
 	while (salirJuego == false){
-	 
+
 		//Maquina de estados
 		switch(estado){
 		case Estado::ESTADO_INICIANDO:
@@ -71,6 +73,7 @@ bool CGame::Start()
 			//}
 			break;
 		case Estado ::ESTADO_MENU:
+
 			if(x==0){
 			printf("\n2. ESTADO_MENU");
 			estado=ESTADO_JUGANDO;
@@ -86,13 +89,16 @@ bool CGame::Start()
 		case Estado ::ESTADO_JUGANDO:
 			enemigo->Actualizar();
 		//	nave->PintarModulo(0,0,0,64,64);
+
+			//	nave->PintarModulo(0,0,0,64,64);
+
 			/*for (int i = 0; i < 100; i++)
 			{
-				
-				nave ->PintarModulo(0,i,i);
-				SDL_Delay(i);
+
+			nave ->PintarModulo(0,i,i);
+			SDL_Delay(i);
 			}*/
-				SDL_FillRect(screen,NULL,SDL_MapRGB(screen->format,0,0,0));  //limpia la imagen 
+			SDL_FillRect(screen,NULL,SDL_MapRGB(screen->format,0,0,0));  //limpia la imagen 
 			keys= SDL_GetKeyState(NULL);
 			if(keys[SDLK_RIGHT])
 			{
@@ -106,10 +112,11 @@ bool CGame::Start()
 			{
 				nave->Mover2(-1);
 			}
-				if(keys[SDLK_DOWN])
+			if(keys[SDLK_DOWN])
 			{
 				nave->Mover2(1);
 			}
+
 			
 				nave->Pintar();
 				enemigo->Pintar();
@@ -120,7 +127,12 @@ bool CGame::Start()
 				estado=ESTADO_TERMINANDO;
 			}
 			
+
+			nave->Pintar();
 			break;
+		
+
+			
 		case Estado ::ESTADO_TERMINANDO:
 			printf("\n4. ESTADO_TERMINANDO");
 			estado=ESTADO_MENU;
@@ -138,6 +150,6 @@ bool CGame::Start()
 			if(event.type==SDL_KEYDOWN){}
 		}
 		SDL_Flip(screen);//Este codigo esta provicionalmente aqui
-    }
+	}
 	return true;
 }
