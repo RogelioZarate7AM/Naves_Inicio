@@ -1,12 +1,13 @@
 #include "Nave.h"
 #include "Header.h"
 
-Nave::Nave(SDL_Surface * screen,char * rutaImagen,int x, int y)
+Nave::Nave(SDL_Surface * screen,char * rutaImagen,int x, int y,int module)
 {
+	this->module=module;
 	sprite = new Sprite(screen);
 	sprite->CargarImagen(rutaImagen);
-	w = sprite->WidthModule(0);
-	h = sprite->HeightModule(0);
+	w = sprite->WidthModule(this->module);
+	h = sprite->HeightModule(this->module);
 	this->x=x;
 	this->y=y;
 	autoMovimiento=false;
@@ -14,14 +15,17 @@ Nave::Nave(SDL_Surface * screen,char * rutaImagen,int x, int y)
 	pasoLimite=-1;
 }
 
-void Nave::SetAutoMovimiento(bool autoMovimiento){
+void Nave::SetAutoMovimiento(bool autoMovimiento)
+{
 	this->autoMovimiento= autoMovimiento;
 }
 
-void Nave::Actualizar(){
+void Nave::Actualizar()
+{
 	if(autoMovimiento)
 	{
 Mover(1);
+Mover2(1);
 	}
 if(pasoLimite>0)
 {
@@ -33,7 +37,12 @@ if(pasoActual>=pasoLimite)
 
 void Nave:: Pintar()
 {
-	sprite->PintarModulo(0,x,y);
+	sprite->PintarModulo(module,x,y);
+}
+
+void Nave:: Pintar(int module,int x,int y)
+{
+	sprite->PintarModulo(module,x,y);
 }
 
 void Nave::Mover(int posicion){

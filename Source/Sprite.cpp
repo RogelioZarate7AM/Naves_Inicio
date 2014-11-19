@@ -5,7 +5,6 @@
 
 Sprite::Sprite(SDL_Surface * screen)//constructor
 {
-	
 	this->screen= screen;
 }
 
@@ -18,7 +17,7 @@ Sprite::~Sprite()// Destructor
 void Sprite::CargarImagen(char * path)
 {
 	imagen = SDL_LoadBMP(path);
-
+	SDL_SetColorKey(imagen, SDL_SRCCOLORKEY | SDL_RLEACCEL, SDL_MapRGB(imagen-> format, 255, 0,255));
 }
 
 //void Sprite::PintarModulo(int nombre, int x, int y ,int w,int h)
@@ -42,6 +41,7 @@ void Sprite::PintarModulo(int nombre, int x, int y )
 	dest.x=x;
 	dest.y=y;
 	SDL_BlitSurface(imagen,&src,screen,&dest);
+	
 }
 int Sprite::WidthModule(int module){
 	return spriteDef.modulos[module].w;
