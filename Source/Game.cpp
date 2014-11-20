@@ -245,15 +245,15 @@ void CGame::MoverEnemigo()
 void CGame::Menu()
 {
 	
-	for (int i = MODULO_TEXTOS_MENU_OPCION1,j=0; i <MODULO_TEXTOS_MENU_OPCION2 ; i++,j++)
+	for (int i = MODULO_TEXTOS_MENU_OPCION1,j=0; i <= MODULO_TEXTOS_MENU_OPCION2 ; i++,j++)
 	{
-		if (i=opcionSeleccionada)
+		if (i==opcionSeleccionada)
 		{
-			textos->Pintar(i+2,200,180+(j*80));
+			textos->Pintar(i+2,300,180+(j*80));
 		}
 		else
 		{
-			textos->Pintar(i,200,180+(j*80));
+			textos->Pintar(i,300,180+(j*80));
 		}
 	
 	}

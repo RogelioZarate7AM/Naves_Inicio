@@ -48,7 +48,7 @@ SpriteDef::SpriteDef(){
 	modulos[7].id=MODULO_TEXTOS_MENU_OPCION1_SELECCIONADO;//Iniciar verde
 	modulos[7].x=310;
 	modulos[7].y=150;
-	modulos[7].w=50;
+	modulos[7].w=60;
 	modulos[7].h=20;
 
 	modulos[8].id=MODULO_TEXTOS_MENU_OPCION2_SELECCIONADO;//Salir verde
