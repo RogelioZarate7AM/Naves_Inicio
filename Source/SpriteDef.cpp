@@ -2,7 +2,7 @@
 #include "Header.h"
 
 SpriteDef::SpriteDef(){
-	modulos[0].id=MODULO_MINAVE_NAVE;//Nave
+	modulos[0].id=MODULO_MINAVE_NAVE;//Objeto
 	modulos[0].x=0;
 	modulos[0].y=0;
 	modulos[0].w=64;
@@ -14,7 +14,7 @@ SpriteDef::SpriteDef(){
 	modulos[1].w=WIDTH_SCREEN;
 	modulos[1].h=HEIGHT_SCREEN;
 
-	modulos[2].id=MODULO_ENEMIGO_NAVE;//Nave enemiga
+	modulos[2].id=MODULO_ENEMIGO_NAVE;//Objeto enemiga
 	modulos[2].x=0;
 	modulos[2].y=0;
 	modulos[2].w=54;

@@ -1,6 +1,7 @@
+#pragma once//proteccion
 #include <SDL.h>
+#include "Objeto.h"
 #include "Nave.h"
-
 class CGame
 {
 public:
@@ -24,7 +25,7 @@ private:
 	void Menu();
 	void Iniciando();
 	void MoverEnemigo();
-	bool EsLimitePantalla(Nave * objeto,int bandera);
+	bool EsLimitePantalla(Objeto * objeto,int bandera);
 
 	int opcionSeleccionada;
 	Uint8 * keys;//Esta variable nos servira para ver si determinadas teclas estan o no pulsadas
@@ -32,12 +33,14 @@ private:
 
 	SDL_Surface *screen;
 	Nave *nave;
-	/*Nave* enemigo;*/
-	Nave *enemigoArreglo[10];
+	/*Objeto* enemigo;*/
+	Objeto *enemigoArreglo[10];
 
-	Nave *menu;// Fondo del Menu
-	Nave *textos;//Textos del menu
-	Nave *fondo;//Fondo del juego
+	Objeto *menu;// Fondo del Menu
+	Objeto *textos;//Textos del menu
+	Objeto *fondo;//Fondo del juego
+
+
 
 	int tick;
 	int tiempoFrameInicial;
